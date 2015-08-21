@@ -10,7 +10,6 @@ class bamboo::service(
     service { $service_name:
       ensure     => $service_ensure,
       enable     => $service_enable,
-      enable     => true,
       hasstatus  => true,
       hasrestart => true,
     }
