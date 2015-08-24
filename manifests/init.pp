@@ -26,7 +26,7 @@ class bamboo (
   $downloadURL  = 'http://www.atlassian.com/software/bamboo/downloads/binary/',
 
   # Manage service
-  $service_name   = 'bamboo',
+  $service_name   = $bamboo::params::service_name,
   $service_manage = true,
   $service_ensure = running,
   $service_enable = true,
