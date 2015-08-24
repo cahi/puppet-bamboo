@@ -1,5 +1,4 @@
 require 'puppetlabs_spec_helper/rake_tasks'
-require 'puppet/vendor/semantic/lib/semantic'
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 
@@ -9,8 +8,6 @@ begin
   require 'puppet_blacksmith/rake_tasks'
 rescue LoadError
 end
-
-Rake::Task[:lint].clear
 
 PuppetLint.configuration.relative = true
 PuppetLint.configuration.send("disable_80chars")

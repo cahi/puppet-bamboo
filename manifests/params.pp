@@ -4,17 +4,12 @@
 # It sets variables according to platform.
 #
 class bamboo::params {
-  #  case $::osfamily {
-  #    'Debian': {
-  #      $package_name = 'bamboo'
-  #      $service_name = 'bamboo'
-  #    }
-  #    'RedHat', 'Amazon': {
-  #      $package_name = 'bamboo'
-  #      $service_name = 'bamboo'
-  #    }
-  #    default: {
-  #      fail("${::operatingsystem} not supported")
-  #    }
-  #  }
+  case $::kernel {
+    'Linux': {
+      $service_name = 'bamboo'
+    }
+    default: {
+      fail("${::kernel} not supported")
+    }
+  }
 }

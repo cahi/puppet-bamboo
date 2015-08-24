@@ -31,6 +31,12 @@ class bamboo::install (
     group  => $group,
   }
 
+  file { $installdir:
+    ensure => 'directory',
+    owner  => $user,
+    group  => $group,
+  }
+
   staging::file { $file:
     source  => "${downloadURL}/${file}",
     timeout => 1800,
@@ -51,11 +57,10 @@ class bamboo::install (
   }
 
   file { $homedir:
-    ensure  => 'directory',
-    owner   => $user,
-    group   => $group,
-    recurse => true,
-  } ->
+    ensure => 'directory',
+    owner  => $user,
+    group  => $group,
+  }
 
   exec { "chown_${webappdir}":
     command     => "/bin/chown -R ${user}:${group} ${webappdir}",
@@ -65,7 +70,7 @@ class bamboo::install (
 
   file { "${installdir}/latest":
     ensure => link,
-    target => "${bamboo::webappdir}",
+    target => $webappdir,
   }
 
 }
