@@ -1,0 +1,12 @@
+[Unit]
+Description=Atlassian Bamboo Service
+After=syslog.target network.target
+   
+[Service]
+Type=forking
+Environment=JAVA_HOME="JAVA_HOME=<%= scope.lookupvar('bamboo::javahome') %>"
+User=<%= scope.lookupvar('bamboo::user') %>
+ExecStart=<%= scope.lookupvar('bamboo::webappdir') %>/bin/startup.sh
+ExecStop=<%= scope.lookupvar('bamboo::webappdir') %>/bin/shutdown.sh
+[Install]
+WantedBy=multi-user.target

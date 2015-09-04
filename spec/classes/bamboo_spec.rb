@@ -29,7 +29,7 @@ describe 'bamboo' do
   context 'unsupported operating system' do
     describe 'bamboo class without any parameters on Solaris' do
       let(:facts) {{
-        :kernel        => 'Solaris',
+        :osfamily        => 'Solaris',
       }}
 
       it { expect { is_expected.to contain_package('bamboo') }.to raise_error(Puppet::Error, /Solaris not supported/) }

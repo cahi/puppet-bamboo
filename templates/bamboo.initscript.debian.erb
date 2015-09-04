@@ -16,22 +16,23 @@ set -e
 # Name of app ( bamboo, Confluence, etc )
 APP=bamboo
 # Name of the user to run as
-USER=bamboo
+USER=<%= scope.lookupvar('bamboo::user') %>
 # Location of application's bin directory
-BASE=/opt/bamboo
+BASE=<%= scope.lookupvar('bamboo::webappdir') %>
+JAVA_HOME=<%= scope.lookupvar('bamboo::javahome') %>
 tomcat_pid() {
-   echo `ps aux | grep "Dcatalina.base=/opt/bamboo" | grep -v grep | awk '{ print $2 }'`
+echo `ps aux | grep "Dcatalina.base=<%= scope.lookupvar('bamboo::webappdir') %>" | grep -v grep | awk '{ print $2 }'`
 }
 case "$1" in
   # Start command
   start)
     echo "Starting $APP"
-    /bin/su - $USER -c "export JAVA_HOME=/opt/jdk && cd $BASE/logs && $BASE/bin/startup.sh &> /dev/null"
+    /bin/su -s /bin/sh -m $USER -c "cd $BASE/logs && $BASE/bin/startup.sh &> /dev/null"
     ;;
   # Stop command
   stop)
     echo "Stopping $APP"
-    /bin/su - $USER -c "export JAVA_HOME=/opt/jdk && $BASE/bin/shutdown.sh &> /dev/null"
+    /bin/su  -s /bin/sh -m $USER -c "$BASE/bin/shutdown.sh &> /dev/null"
     echo "$APP stopped successfully"
     ;;
    # Restart command
@@ -45,8 +46,10 @@ case "$1" in
         if [ -n "$pid" ]
         then
                 echo "Your Bamboo Instance is running with pid: $pid"
+                exit 0
         else
                 echo "Your Bamboo Instance is not running"
+                exit 3
         fi
         ;;
   *)
