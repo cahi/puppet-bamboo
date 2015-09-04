@@ -46,7 +46,7 @@ JAVA_OPTS="-Xms${JVM_MINIMUM_MEMORY} -Xmx${JVM_MAXIMUM_MEMORY} ${JAVA_OPTS} ${JV
 
 
 # Perm Gen size needs to be increased if encountering OutOfMemoryError: PermGen problems. Specifying PermGen size is not valid on IBM JDKs
-BAMBOO_MAX_PERM_SIZE=<%= jvm_permgen %>
+BAMBOO_MAX_PERM_SIZE=<%= @jvm_permgen %>
 if [ -f "${PRGDIR}/permgen.sh" ]; then
     echo "Detecting JVM PermGen support..."
     . "${PRGDIR}/permgen.sh"
