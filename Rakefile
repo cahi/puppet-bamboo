@@ -39,9 +39,9 @@ task :metadata do
 end
 
 desc "Run syntax, lint, and spec tests."
-task :test => [
-  :syntax,
-  :lint,
-  :spec,
-  :metadata,
-]
+if ENV['PUPPET_GEM_VERSION'] =~ /^4\..\../
+  tests = [ :lint, :spec, :metadata ]
+else
+  tests = [ :syntax, :lint, :spec, :metadata ]
+end
+task :test => tests
