@@ -29,11 +29,13 @@ class bamboo::config(
   }
 
   file { "${webappdir}/atlassian-bamboo/WEB-INF/classes/bamboo-init.properties":
+    ensure  => 'file',
     content => template('bamboo/bamboo-init.properties.erb'),
     mode    => '0755',
   }
 
   file { "${webappdir}/bin/setenv.sh":
+    ensure  => 'file',
     content => template('bamboo/setenv.sh.erb'),
     mode    => '0755',
   }
