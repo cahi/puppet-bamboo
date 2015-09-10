@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/mkrakowitzer/puppet-bamboo.svg)](https://travis-ci.org/mkrakowitzer/puppet-bamboo)
 #### Table of Contents
 
 1. [Overview](#overview)
