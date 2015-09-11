@@ -23,12 +23,12 @@ class bamboo (
   $shell        = '/bin/true',
 
   # Misc Settings
-  $downloadURL  = 'http://www.atlassian.com/software/bamboo/downloads/binary/',
+  $downloadURL  = 'http://www.atlassian.com/software/bamboo/downloads/binary',
 
   # Manage service
   $service_name   = $bamboo::params::service_name,
   $service_manage = true,
-  $service_ensure = running,
+  $service_ensure = 'running',
   $service_enable = true,
 
   # JVM Tunables
@@ -39,7 +39,7 @@ class bamboo (
 
   # Tomcat Tunables
   # Should we use augeas to manage server.xml or a template file
-  $manage_server_xml   = 'augeas',
+  $manage_server_xml   = 'template',
   $tomcat_port         = 8085,
   $tomcat_max_threads  = 150,
   $tomcat_accept_count = 100,
@@ -74,6 +74,6 @@ class bamboo (
   class { '::bamboo::install': } ->
   class { '::bamboo::config': } ~>
   class { '::bamboo::service': } ->
-  anchor { 'bambo::end': }
+  anchor { 'bamboo::end': }
 
 }

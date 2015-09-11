@@ -25,13 +25,13 @@ class bamboo::install (
     system           => true,
   } ->
 
-  file { $webappdir:
+  file { $installdir:
     ensure => 'directory',
     owner  => $user,
     group  => $group,
-  }
+  } ->
 
-  file { $installdir:
+  file { $webappdir:
     ensure => 'directory',
     owner  => $user,
     group  => $group,
@@ -57,9 +57,10 @@ class bamboo::install (
   }
 
   file { $homedir:
-    ensure => 'directory',
-    owner  => $user,
-    group  => $group,
+    ensure  => 'directory',
+    owner   => $user,
+    group   => $group,
+    require => User['bamboo'],
   }
 
   exec { "chown_${webappdir}":

@@ -11,16 +11,16 @@ describe 'bamboo' do
           :javahome => '/opt/java',
         }}
 
-
         context "bamboo class without any parameters" do
 
-          it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_class('bamboo::params') }
-          it { is_expected.to contain_class('bamboo::install').that_comes_before('bamboo::config') }
-          it { is_expected.to contain_class('bamboo::config') }
-          it { is_expected.to contain_class('bamboo::service').that_subscribes_to('bamboo::config') }
-
-          it { is_expected.to contain_service('bamboo') }
+          it { should compile.with_all_deps }
+          it { is_expected.to contain_class('bamboo') }
+          it { should contain_anchor('bamboo::start').that_comes_before('bamboo::install') }
+          it { should contain_class('bamboo::params') }
+          it { should contain_class('bamboo::install').that_comes_before('bamboo::config') }
+          it { should contain_class('bamboo::config') }
+          it { should contain_class('bamboo::service').that_subscribes_to('bamboo::config') }
+          it { should contain_anchor('bamboo::end').that_requires('bamboo::service') }
         end
       end
     end

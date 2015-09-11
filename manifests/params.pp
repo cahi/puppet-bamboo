@@ -15,7 +15,7 @@ class bamboo::params {
         $service_file_template   = 'bamboo/bamboo.initscript.redhat.erb'
         $service_lockfile        = '/var/lock/subsys/bamboo'
       } else {
-        fail("${::operatingsystem} ${::operatingsystemmajrelease} not supported")
+        fail("${::osfamily} ${::operatingsystemmajrelease} not supported")
       }
     } 'Debian': {
       if $::lsbmajdistrelease =~ /(7|12|14)/ {
@@ -27,7 +27,7 @@ class bamboo::params {
         $service_file_template   = 'bamboo/bamboo.service.erb'
         $service_lockfile        = '/var/lock/subsys/bamboo'
       } else {
-        fail("${::operatingsystem} ${::lsbmajdistrelease} not supported")
+        fail("${::osfamily} ${::lsbmajdistrelease} not supported")
       }
     } default: {
       fail("${::osfamily} not supported")
