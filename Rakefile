@@ -39,7 +39,7 @@ task :metadata do
 end
 
 desc "Run syntax, lint, and spec tests."
-if ENV['PUPPET_GEM_VERSION'] =~ /^4\..\../
+if ENV['PUPPET_GEM_VERSION'] =~ /(^4\..\..|~> 4)/
   tests = [ :lint, :spec, :metadata ]
 else
   tests = [ :syntax, :lint, :spec, :metadata ]
