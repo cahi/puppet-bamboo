@@ -31,7 +31,29 @@ describe 'bamboo' do
             context 'resources in bamboo::config class class' do
               it { should contain_file('/my/home/logs') }
             end
+          end
 
+          context 'With custom service parameters' do
+            context 'resources in bamboo::service class' do
+              describe 'service_manage => false' do
+                let(:params) {{
+                  :javahome => '/opt/java',
+                  :service_manage => false,
+                }}
+                it { should_not contain_service('bamboo') }
+              end
+              describe 'service_enable => false, service_ensure => stopped' do
+                let(:params) {{
+                  :javahome       => '/opt/java',
+                  :service_ensure => 'stopped',
+                  :service_enable => false,
+                }}
+                it do should contain_service('bamboo')
+                  .with_ensure('stopped')
+                  .with_enable(false)
+                end
+              end
+            end
           end
         end
       end
