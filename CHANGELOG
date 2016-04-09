@@ -1,3 +1,2 @@
-YYYY-MM-DD Release 0.1.0
-- something you did
-- something else you did
+2016-04-09 Release 0.1.2
+- Remove jasper from server.xml as bamboo will not start with 5.10

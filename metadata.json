@@ -1,6 +1,6 @@
 {
   "name": "mkrakowitzer-bamboo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "mkrakowitzer",
   "summary": "This module installs and manages the bamboo configuration files.",
   "license": "MIT",
