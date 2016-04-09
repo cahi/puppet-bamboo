@@ -5,5 +5,6 @@ include RspecPuppetFacts
 RSpec.configure do |c|
   c.default_facts = {
     :augeasversion    => '1.0.0',
+    :staging_http_get => 'curl',
   }
 end
