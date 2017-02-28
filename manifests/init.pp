@@ -61,7 +61,7 @@ class bamboo (
 #  $poolsize     = '15',
 ) inherits ::bamboo::params {
 
-  validate_re($version, '^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)(|[a-z])$')
+  validate_re($version, '^(?:(\d+)\.)?(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)(|[a-z])$')
   validate_absolute_path($installdir)
   validate_absolute_path($homedir)
 
